@@ -1,0 +1,32 @@
+- [ ] Topícos.
+- Pré-instalação.
+  - [x] Definir Layout do teclado.
+  - [ ] Testar e conectar a internet.
+  - [x] Gerenciar e criar partições.
+  - [x] Formatar partições.
+  - [x] Definir pontos de montagem.
+- Instalação
+  - [x] Configurar mirror.
+  - [ ] Atualizar relogio do sistema.
+  - [ ] Instalação de pacotes essencias. (`base base-devel linux linux-firmware`)
+  - [ ] Gerar arquivo FSTAB
+- Configurações basicas:
+  - [ ] Acessar sistema.
+  - [ ] Configurar idioma.
+  - [ ] Configurar fuso horário.
+  - [ ] Configurações de rede (SSH, NetworkManager, iwc e DHCP)
+  - [ ] Instalar o GRUB.
+  - [ ] Definir Hostname
+  - [ ] Instalando pacotes uteis ().
+  - [ ] Instalando drivers de video.
+  - [ ] Criando senha root.
+  - [ ] Criando usuario.
+  - [ ] reboot.
+- Pós instalação:
+  - [ ] Instalar o gerenciador de pacotes AUR.
+  - [ ] Ajustes no arquivo ``pacman.conf``.
+  - [ ] Instalando e configurando o Bluetooth.
+  - [ ] Configurar SSD TRIM.
+  - [ ] Instalando pacotes opcionais.
+- Configurando o I3WM.
+  - [ ]

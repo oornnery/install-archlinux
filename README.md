@@ -33,33 +33,34 @@ Para realizar o Download do Arch Linux você deve acessar o site do [Arch Linux 
 
 ...
 
-## Pré-instalação
+## Pré-Instalação
 
 ---
 
-**Definindo layout do teclado**
+**Definindo layout do teclado:**
 
 ```bash
 loadkeys br-abnt2
 ```
 
-Para listar todos os layout disponpíveis use o comando abaixo:
+Para listar todos os layout disponíveis use:
 
 ```bash
 localectl list-keymaps
 ```
 
-**Conectando a internet**
+**Conectando a internet:**
 
 Para saber se estamos conectados a internet, vamos usa o comando `ping`.
 
 ```bash
 ping 8.8.8.8
 ```
+Continuar...
 
-**Atualizando Chaves**
+**Atualizando Chaves:**
 
-Caso tenha erros, procure atualizar as chaves do repositorio, para isso utilize o comando abaixo.
+Para evitar erros, vamos atualizar as chaves:
 
 ```bash
 pacman-key --init
@@ -67,16 +68,27 @@ pacman-key --populate
 pacman -Sy archlinux-keyring
 ```
 
-### Particioando o disco
+**Particionado o disco:**
 
-Para essa instalação irei usar o seguinte esquema de particionamento, para saber mais sobre esse assunto acesse a documentação.
+Para essa instalação irei usar o seguinte esquema de particionamento, para saber mais sobre esse assunto acesse a wiki.
 
-- `/dev/sda1` boot partition (500MB).
-- `/dev/sda2` swap partition (4G). (opcional)
-- `/dev/sda3` root partition (20).
-- `/dev/sda4` home partition (100G).
+- `/dev/sda1` boot partition (500MB para o /boot/efi).
+- `/dev/sda2` swap partition (4GB para o swap, isso é opcional).
+- `/dev/sda3` root partition (20GB para /).
+- `/dev/sda4` home partition (100GB para o /home).
 
-Irei utilizar o `cfdisk` para criar as particições.
+Nesse caso irei usar todo o resto do meu disco para o `/home`.
+
+
+Para ver as partições use o `fdisk`.
+
+Listando partições existentes.
+
+```bash
+fdisk -l /dev/sda
+```
+
+Para criar as partições vamos usar o `cfdisk`.
 
 ```bash
 cfdisk /dev/sda/
@@ -91,7 +103,7 @@ Após definir as partições vamos formatar as partições.
    mkfs.ext4 /dev/sda4
 ```
 
-Vamos montar as partições.
+Definindo ponto de montagem das partições.
 
 ```bash
    swapon /dev/sda2
@@ -101,7 +113,7 @@ Vamos montar as partições.
    mount /dev/sda4 /mnt/home
 ```
 
-Se você rodar o comando `lsblk` deve ver uma saída como essa:
+Você pode conferir usando o comando `lsblk`:
 
 ```bash
  NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
@@ -111,3 +123,21 @@ Se você rodar o comando `lsblk` deve ver uma saída como essa:
    ├─sda3   8:3    0    20G  0 part /mnt
    └─sda4   8:4    0   100G  0 part /mnt/home
 ```
+**Configurando os mirror:**
+
+Configurando mirror usando o `reflector`.
+
+```bash
+pacman -Sy
+pacman -S reflector
+reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+```
+
+Se você preferir definir os mirror manualmente.
+
+```bash
+vim /etc/pacman.d/mirrorlist
+```
+
+Você pode mover o mirror desejado para cima, ou comentar a linha que você não deseja usar com um #.
+
