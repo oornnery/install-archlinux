@@ -7,26 +7,26 @@
   - [x] Definir pontos de montagem.
 - Instalação
   - [x] Configurar mirror.
-  - [ ] Atualizar relogio do sistema.
-  - [ ] Instalação de pacotes essencias. (`base base-devel linux linux-firmware`)
-  - [ ] Gerar arquivo FSTAB
+  - [x] Atualizar relogio do sistema.
+  - [x] Instalação de pacotes essencias. (`base base-devel linux linux-firmware`)
+  - [x] Gerar arquivo FSTAB
 - Configurações basicas:
-  - [ ] Acessar sistema.
-  - [ ] Configurar idioma.
-  - [ ] Configurar fuso horário.
-  - [ ] Configurações de rede (SSH, NetworkManager, iwc e DHCP)
-  - [ ] Instalar o GRUB.
-  - [ ] Definir Hostname
-  - [ ] Instalando pacotes uteis ().
-  - [ ] Instalando drivers de video.
-  - [ ] Criando senha root.
-  - [ ] Criando usuario.
-  - [ ] reboot.
+  - [x] Acessar sistema.
+  - [x] Configurar idioma.
+  - [x] Configurar fuso horário.
+  - [x] Configurações de rede (SSH, NetworkManager, iwc e DHCP)
+  - [x] Instalar o GRUB.
+  - [x] Definir Hostname
+  - [x] Instalando pacotes uteis ().
+  - [x] Instalando drivers de video.
+  - [x] Criando senha root.
+  - [x] Criando usuario.
+  - [x] reboot.
 - Pós instalação:
-  - [ ] Instalar o gerenciador de pacotes AUR.
+  - [x] Instalar o gerenciador de pacotes AUR.
   - [ ] Ajustes no arquivo ``pacman.conf``.
-  - [ ] Instalando e configurando o Bluetooth.
-  - [ ] Configurar SSD TRIM.
-  - [ ] Instalando pacotes opcionais.
+  - [x] Instalando e configurando o Bluetooth.
+  - [x] Configurar SSD TRIM.
+  - [x] Instalando pacotes opcionais.
 - Configurando o I3WM.
   - [ ]

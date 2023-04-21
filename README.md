@@ -141,3 +141,218 @@ vim /etc/pacman.d/mirrorlist
 
 Você pode mover o mirror desejado para cima, ou comentar a linha que você não deseja usar com um #.
 
+**Atualizar relogio do sistema:**
+
+```bash
+timedatectl set-ntp true
+```
+
+**Instalar pacotes essensiais:**
+```bash
+pacstrap /mnt base base-devel linux-zen linux-firmware neovim nano git
+```
+
+**Gerar arquivo fstab:**
+
+```bash
+genfstab -U /mnt >> /mnt/etc/fstab
+```
+
+## Configurações basicas:
+
+**Acessar novo sistema:**
+
+```bash
+arch-chroot /mnt
+```
+
+### **Instalando o bootloader (GRUB):**
+---
+**BIOS-Legacy**
+
+```bash
+pacman -S grub
+grub-install --target=i386-pc --recheck /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+**UEFI**
+
+```bash
+pacman -S grub efibootmgr
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch_grub --recheck
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+### **Atualizando o idioma e layout do teclado:**
+---
+
+Para atualizar o idioma, você deve editar o arquivo `/etc/locale.conf`.
+
+```bash
+nvim /etc/locale.conf
+```
+
+Você precisa descomentar a linha referente ao seu idioma desejado, por exemplo `en_US.UTF-8 UTF-8`.
+
+Após editar o arquivo, atualize o arquivo com o comando `locale-gen`.
+
+```bash
+locale-gen
+```
+
+Para atualizar o layout do teclado, você precisa editar o arquivo `/etc/vconsole.conf`.
+
+```bash
+echo KEYMAP=br-abnt2 >> /etc/vconsole.conf
+```
+
+
+### **Configurando o fuso horário:**
+
+Para exemplo eu estou em "America/Sao_Paulo", você deve adptar de acordo com o seu fuso.
+
+```bash
+ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+hwclock --systohc
+```
+
+Para conferir se a data do sistema está correta, use o comando `date`.
+
+```bash
+date
+```
+
+## **Configurações de rede e bluetooth:**
+
+
+```bash
+pacman -S dhcpcd iw openssh network-manager-applet networkmanage wpa_supplicant wireless_tools dialog bluez bluez-utils blueman
+systemctl enable sshd
+systemctl enable dhcpcd
+systemctl enable NetworkManager
+systemctl enable bluetooth
+```
+
+**Definindo um Hostname:**
+
+```bash
+hostnamectl set-hostname nomedoseuhost
+```
+
+## **Instalando drivers:**
+---
+
+**Instalando drivers de audio:**
+
+```bash
+pacman -S pulseaudio pulseaudio-alsa alsa-utils alsa-plugins alsa-lib alsa-firmware pavucontrol pulseaudio-bluetooth
+```
+
+**Instalando drivers de video:**
+
+**Intel**
+
+```bash
+pacman -S xf86-video-intel
+```
+
+**Nvidia**
+
+```bash
+pacman -S nvidia nvidia-settings
+```
+
+**AMD**
+
+```
+pacman -S xf86-video-amdgpu
+```
+
+
+**Configurando o SSD TRIM:**
+
+```bash
+systemctl enable fstrim.timer
+```
+
+**Instalando pacotes adicionais:**
+
+```bash
+pacman -S dialog git reflector lshw unzip htop wget xdg-user-dirs dosfstools os-prober mtools nemo firefox
+```
+
+**Criando senha root:**
+
+Para configurar a nova senha do seu usuário root, basta rodar o comando:
+
+```bash
+passwd
+```
+
+**Criando usuario:**
+
+
+```
+useradd -m -g users -G wheel,storage,power,audio seuusuario
+passwd seuusuario
+```
+Conceder acesso root ao nosso usuário
+
+```bash
+EDITOR=nvim visudo
+```
+
+Se preferir não lhe ser pedida uma palavra-passe sempre que executar um comando com privilégios "sudo" você precisa descomentar esta linha:
+
+```bash
+%wheel ALL=(ALL) NOPASSWD: ALL
+```
+
+Ou se você preferir o comportamento padrão da maioria das distribuições Linux, você precisa descomente esta linha:
+
+```bash
+%wheel ALL=(ALL) ALL
+```
+Login no usuário recém-criado
+
+```bash
+su - seuusuario
+xdg-user-dirs-update
+```
+
+**reboot:**
+
+```bash
+exit
+umount -R /mnt
+reboot
+```
+
+## **Instalando o gerenciador de janelas I3-gaps:**
+
+**Instalando o gerenciador de pacotes AUR:**
+   
+```bash
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
+```
+
+**Ajustes no arquivo de configuração**
+
+```bash
+nvim /etc/pacman.conf
+```
+**Display manager:**
+
+```bash
+pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+systemctl enable lightdm
+```
+
+## Instalando o I3-gaps:
+
+```bash
+paru -S i3-gaps-rounded-git i3status i3lock i3blocks i3lock-color dmenu dunst redshift xfce4-settings autotiling-rs-git rofi picom nitrogen lxappearance power-profiles-daemon arandr alacritty polybar
+```
