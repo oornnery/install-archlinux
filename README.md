@@ -1,26 +1,21 @@
 # Como instalar o ArchLinux
 
 ## Topicos:
----
 Continuar...
 
 ## Documentação
----
 Toda a documentação do Arch Linux está disponível no site official do SO, ao meu ver é a documentação mais completa e com o maior numero de pessas contibuindo.
 
 [ArchWiki (archlinux.org)](https://wiki.archlinux.org/)
 
 ## Download
----
 Para realizar o Download do Arch Linux você deve acessar o site do [Arch Linux - Downloads](https://archlinux.org/download/).
 
 ## Midia de instalação
----
 
 Continuar...
 
 ## Pré-Instalação
----
 
 **Definindo layout do teclado:**
 
