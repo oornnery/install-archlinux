@@ -1,40 +1,25 @@
 # Como instalar o ArchLinux
 
+## Topicos:
 ---
-
-### Topicos:
-
-- Download
-  
-- Instalação
-  
-- Ajuste inicial
-  
-- Referencias
-  
+Continuar...
 
 ## Documentação
-
 ---
-
 Toda a documentação do Arch Linux está disponível no site official do SO, ao meu ver é a documentação mais completa e com o maior numero de pessas contibuindo.
 
 [ArchWiki (archlinux.org)](https://wiki.archlinux.org/)
 
 ## Download
-
 ---
-
 Para realizar o Download do Arch Linux você deve acessar o site do [Arch Linux - Downloads](https://archlinux.org/download/).
 
 ## Midia de instalação
-
 ---
 
-...
+Continuar...
 
 ## Pré-Instalação
-
 ---
 
 **Definindo layout do teclado:**
@@ -123,6 +108,7 @@ Você pode conferir usando o comando `lsblk`:
    ├─sda3   8:3    0    20G  0 part /mnt
    └─sda4   8:4    0   100G  0 part /mnt/home
 ```
+
 **Configurando os mirror:**
 
 Configurando mirror usando o `reflector`.
@@ -152,14 +138,14 @@ timedatectl set-ntp true
 pacstrap /mnt base base-devel linux-zen linux-firmware neovim nano git
 ```
 
-**Gerar arquivo fstab:**
+**Gerarando arquivo fstab:**
 
 ```bash
 genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
-## Configurações basicas:
-
+## Configurações basicas
+---
 **Acessar novo sistema:**
 
 ```bash
@@ -186,7 +172,6 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 ### **Atualizando o idioma e layout do teclado:**
 ---
-
 Para atualizar o idioma, você deve editar o arquivo `/etc/locale.conf`.
 
 ```bash
@@ -209,7 +194,7 @@ echo KEYMAP=br-abnt2 >> /etc/vconsole.conf
 
 
 ### **Configurando o fuso horário:**
-
+---
 Para exemplo eu estou em "America/Sao_Paulo", você deve adptar de acordo com o seu fuso.
 
 ```bash
@@ -223,9 +208,8 @@ Para conferir se a data do sistema está correta, use o comando `date`.
 date
 ```
 
-## **Configurações de rede e bluetooth:**
-
-
+### **Configurações de rede e bluetooth:**
+---
 ```bash
 pacman -S dhcpcd iw openssh network-manager-applet networkmanage wpa_supplicant wireless_tools dialog bluez bluez-utils blueman
 systemctl enable sshd
@@ -240,9 +224,8 @@ systemctl enable bluetooth
 hostnamectl set-hostname nomedoseuhost
 ```
 
-## **Instalando drivers:**
+### **Instalando drivers:**
 ---
-
 **Instalando drivers de audio:**
 
 ```bash
@@ -268,7 +251,6 @@ pacman -S nvidia nvidia-settings
 ```
 pacman -S xf86-video-amdgpu
 ```
-
 
 **Configurando o SSD TRIM:**
 
@@ -344,15 +326,30 @@ makepkg -si
 ```bash
 nvim /etc/pacman.conf
 ```
-**Display manager:**
+...
+
+**Instalando o xorg:**
+
+```bash
+pacman -S xorg-server xorg-xinit xorg-apps mesa
+```
+
+**Tela de login:**
 
 ```bash
 pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
 systemctl enable lightdm
 ```
 
+
 ## Instalando o I3-gaps:
 
 ```bash
 paru -S i3-gaps-rounded-git i3status i3lock i3blocks i3lock-color dmenu dunst redshift xfce4-settings autotiling-rs-git rofi picom nitrogen lxappearance power-profiles-daemon arandr alacritty polybar
 ```
+---
+
+## Referencias:
+- https://wiki.archlinux.org/title/Installation_guide
+- https://gist.github.com/m4jrt0m/2125d5ad87fad7216a8e7591337709cf
+- https://diolinux.com.br/sistemas-operacionais/arch-linux/como-instalar-arch-linux-tutorial-iniciantes.html
